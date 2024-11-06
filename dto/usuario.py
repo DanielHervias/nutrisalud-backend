@@ -1,9 +1,11 @@
+from typing import Optional
 from pydantic import BaseModel
 
 class UsuarioDto(BaseModel):
-    id: int
+    id: Optional[int] = None
     nombre: str
-    edad: str
+    edad: int
+    role: str
 
 class CreateUser(BaseModel):
     nombre: str
