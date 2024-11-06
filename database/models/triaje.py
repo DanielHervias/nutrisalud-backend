@@ -18,21 +18,5 @@ class Triaje(Base):
     objetivo_ganar_masa_muscular = Column(Boolean, nullable=True)
     objetivo_otro = Column(String, nullable=True)
 
-    # Relación con paciente: usamos primaryjoin para indicar cómo hacer la unión
-    paciente = relationship(
-        "Usuario",
-        back_populates="triajes",
-        foreign_keys=[paciente_id],
-        primaryjoin="Triaje.paciente_id == Usuario.id",  # Condición de unión explícita
-    )
-
-    # Relación con medico: usamos primaryjoin para indicar cómo hacer la unión
-    medico = relationship(
-        "Usuario",
-        back_populates="triajes_medico",
-        foreign_keys=[medico_id],
-        primaryjoin="Triaje.medico_id == Usuario.id",  # Condición de unión explícita
-    )
-
     def __repr__(self):
         return f"<Triaje(id={self.id})>"

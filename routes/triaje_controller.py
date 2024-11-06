@@ -7,7 +7,7 @@ from services.triaje import TriajeService
 router = APIRouter()
 
 @router.post("/triaje")
-def registrar_triaje_controller(triaje: TriajeDto, db: Session = Depends(get_db)):
+def registrar_triaje(triaje: TriajeDto, db: Session = Depends(get_db)):
     return TriajeService.registrar_triaje(triaje, db)
 
 @router.get("/triaje/paciente")
