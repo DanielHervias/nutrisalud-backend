@@ -1,18 +1,10 @@
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, Session
+import os
 
-# Configura el motor de SQLite y crea el archivo de base de datos local
-DATABASE_URL = "sqlite:///nutrisalud_db.sqlite"
+from motor.motor_asyncio import AsyncIOMotorClient
 
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
-Base = declarative_base()
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+# MONGO_URL = f"mongodb+srv://{os.getenv("MONGO_USER_NAME")}:{os.getenv("MONGO_USER_PASSWORD")}@cluster0.pk30t.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+MONGO_URL = "mongodb://localhost:27017"
+mongo_client = AsyncIOMotorClient(MONGO_URL)
+database = mongo_client["nutrisalud"]
 
-# Dependencia para obtener la sesión de la base de datos
-def get_db() -> Session:
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()  # Cierra la sesión al final de la solicitud
+usuarioDb = database["usuario"]

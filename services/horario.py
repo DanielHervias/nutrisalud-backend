@@ -1,6 +1,5 @@
 from dao.horario import HorarioDao
 from dto.horario import HorarioDto
-from typing import List
 
 class HorarioService:
     def registrar_horario_particular(horario: HorarioDto, db):

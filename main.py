@@ -1,13 +1,22 @@
+from dotenv import load_dotenv
+
 from fastapi import FastAPI
-from database.initDatabase import engine, Base
-from routes import triaje_controller, usuario_rt, horario_api
+from contextlib import asynccontextmanager
+from routes import triaje_controller, usuario, horario_api
 
-# Crear las tablas en la base de datos
-Base.metadata.create_all(bind=engine)
+load_dotenv()
 
-app = FastAPI()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    print("Starting FastAPI with MongoDB...")
+    yield
+    print("Shutting down FastAPI...")
+
+
+app = FastAPI(lifespan=lifespan)
 
 # Incluir las rutas del router de usuarios
-app.include_router(usuario_rt.router, tags=["usuario"])
-app.include_router(triaje_controller.router, tags=["triaje"])
-app.include_router(horario_api.router, tags=["horario"])
+app.include_router(usuario.router, tags=["usuario"])
+# app.include_router(triaje_controller.router, tags=["triaje"])
+# app.include_router(horario_api.router, tags=["horario"])
