@@ -8,3 +8,6 @@ mongo_client = AsyncIOMotorClient(MONGO_URL)
 database = mongo_client["nutrisalud"]
 
 usuarioDb = database["usuario"]
+citaDb = database["cita"]
+
+

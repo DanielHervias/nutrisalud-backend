@@ -1,3 +1,4 @@
+from typing import List
 from bson import ObjectId
 from fastapi import HTTPException
 from database.initDatabase import usuarioDb
@@ -19,10 +20,16 @@ class UsuarioDao:
         }
     
     async def get_user_by_email(email: str) -> UsuarioDto:
-        user = await usuarioDb.find_one({"email": email})
-        if user is None:
-            raise HTTPException(status_code=404, detail="Email o contraseña incorrectos.")
-        return user
+        return await usuarioDb.find_one({"email": email})
+    
+    async def get_user_by_role(role: str) -> List[UsuarioDto]:
+        cursor = usuarioDb.find({"role": role})
+        users = []
+        async for user in cursor:
+            user["_id"] = str(user["_id"])
+            del user["password"]
+            users.append(user)
+        return users
 
     async def actualizar_usuario(
         usuario_id: str, usuario_actualizado: UsuarioUpdateDto

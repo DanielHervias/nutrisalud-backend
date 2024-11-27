@@ -2,7 +2,6 @@ from typing import List
 from fastapi import HTTPException
 from database.models.horario import Horario
 from dto.horario import HorarioDto
-from sqlalchemy.orm import Session
 
 
 class HorarioDao:
