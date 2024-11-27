@@ -6,7 +6,7 @@ from dto.usuario import UsuarioCreateDto, UsuarioUpdateDto
 
 class UsuarioDao:
     async def crear_usuario(usuario_nuevo: UsuarioCreateDto):
-        usuario = await usuarioDb.find_one({"nombre": usuario_nuevo.nombre})
+        usuario = await usuarioDb.find_one({"email": usuario_nuevo.email})
 
         if usuario:
             raise HTTPException(status_code=400, detail="El usuario ya existe")
