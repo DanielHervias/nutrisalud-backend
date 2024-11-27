@@ -10,5 +10,5 @@ database = mongo_client["nutrisalud"]
 usuarioDb = database["usuario"]
 citaDb = database["cita"]
 horarioDb = database["horario"]
-
+triajeDb = database["triaje"]
 
