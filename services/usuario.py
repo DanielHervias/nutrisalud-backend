@@ -10,6 +10,7 @@ class UsuarioService:
         user: UsuarioDto = await UsuarioDao.get_user_by_email(email)
 
         if (user.password == password):
-            return {"ok": True}
+            user = user.model_dump(exclude={"password"})
+            return {"ok": True, "user": user}
         else:
             return {"ok": False}
