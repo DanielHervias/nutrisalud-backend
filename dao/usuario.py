@@ -1,7 +1,7 @@
 from bson import ObjectId
 from fastapi import HTTPException
 from database.initDatabase import usuarioDb
-from dto.usuario import UsuarioCreateDto, UsuarioUpdateDto
+from dto.usuario import UsuarioCreateDto, UsuarioUpdateDto, UsuarioDto
 
 
 class UsuarioDao:
@@ -17,6 +17,12 @@ class UsuarioDao:
             "message": "Usuario creado exitosamente.",
             "ok": nuevo_usuario.acknowledged,
         }
+    
+    async def get_user_by_email(email: str) -> UsuarioDto:
+        user = await usuarioDb.find_one({"email": email})
+        if user is None:
+            raise HTTPException(status_code=404, detail="Email o contraseña incorrectos.")
+        return UsuarioDto(**user)
 
     async def actualizar_usuario(
         usuario_id: str, usuario_actualizado: UsuarioUpdateDto
