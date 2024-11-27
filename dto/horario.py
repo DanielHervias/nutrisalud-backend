@@ -1,11 +1,11 @@
-from typing import Optional
+from typing import List, Optional
 from pydantic import BaseModel
 
 class HorarioDto(BaseModel):
-    id: Optional[int] = None
-    id_nutricionista: int
+    horaInicio: str
+    horaFin: str
+    date: str
     mes: str
-    dia: str
-    fecha: str
-    inicio: str
-    fin: str
+
+class RegistrarHorario(BaseModel):
+    horario: List[HorarioDto]
