@@ -22,7 +22,7 @@ class UsuarioDao:
         user = await usuarioDb.find_one({"email": email})
         if user is None:
             raise HTTPException(status_code=404, detail="Email o contraseña incorrectos.")
-        return UsuarioDto(**user)
+        return user
 
     async def actualizar_usuario(
         usuario_id: str, usuario_actualizado: UsuarioUpdateDto

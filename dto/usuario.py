@@ -3,6 +3,7 @@ from typing import Optional
 
 
 class UsuarioDto(BaseModel):
+    _id: Optional[str] = None
     name: str
     lastName: str
     email: str
@@ -33,6 +34,3 @@ class UsuarioUpdateDto(BaseModel):
     edad: Optional[int] = None
     role: Optional[str] = None
 
-class UserLoginDto(BaseModel):
-    email: str
-    password: str

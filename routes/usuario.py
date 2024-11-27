@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from dto.usuario import UsuarioCreateDto, UsuarioUpdateDto, UserLoginDto
+from dto.usuario import UsuarioCreateDto, UsuarioUpdateDto
 from services.usuario import UsuarioService
 
 router = APIRouter()
@@ -9,8 +9,8 @@ async def create_user(usuario_nuevo: UsuarioCreateDto):
     return await UsuarioService.crear_usuario(usuario_nuevo)
 
 @router.get("/usuario/login")
-async def login_user(body: UserLoginDto):
-    return await UsuarioService.user_login(body)
+async def login_user(email: str, password: str):
+    return await UsuarioService.user_login(email, password)
 
 """ @router.put("/usuario/{usuario_id}")
 async def actualizar_usuario(usuario_id: str, body: UsuarioUpdateDto):
