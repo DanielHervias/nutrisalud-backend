@@ -1,12 +1,12 @@
-from typing import Any, Optional
+from typing import Any
 from pydantic import BaseModel
-from fastapi import File, UploadFile
 
 
 class CreateAppointmentDto(BaseModel):
+    nutritionist_id: str
+    patient_id: str
     nutritionist: str
     appointmentType: str
     date: str
     time: str
-    report: Optional[UploadFile] = File(None)
-    report_id: Any
+    report: Any

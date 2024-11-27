@@ -4,10 +4,11 @@ from dto.cita import CreateAppointmentDto
 
 
 class CitaDao:
+    async def obtener_cita(query):
+        return await citaDb.find_one(query)
+    
     async def crear_cita(createAppointmentDto: CreateAppointmentDto):
         nueva_cita = await citaDb.insert_one(createAppointmentDto.model_dump())
+        return nueva_cita.acknowledged
 
-        return {
-            "message": "La Cita fue creada exitosamente.",
-            "ok": nueva_cita.acknowledged,
-        }
+        

@@ -31,6 +31,6 @@ app.add_middleware(
 
 # Incluir las rutas del router de usuarios
 app.include_router(usuario.router, tags=["usuario"])
-# app.include_router(cita.router, tags=["cita"])
+app.include_router(cita.router, tags=["cita"])
 # app.include_router(triaje_controller.router, tags=["triaje"])
 # app.include_router(horario_api.router, tags=["horario"])
