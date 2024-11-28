@@ -15,6 +15,7 @@ class CitaService:
         query = {
             "patient_id": createAppointmentDto.patient_id,
             "date": createAppointmentDto.date,
+            "time": createAppointmentDto.time
         }
         cita = await CitaDao.obtener_cita(query)
 
@@ -26,6 +27,7 @@ class CitaService:
         query = {
             "nutritionist_id": createAppointmentDto.nutritionist_id,
             "date": createAppointmentDto.date,
+            "time": createAppointmentDto.time
         }
         cita = await CitaDao.obtener_cita(query)
 
@@ -41,3 +43,9 @@ class CitaService:
             "message": "La Cita fue creada exitosamente.",
             "ok": ok,
         }
+
+    async def obtener_citas_usuario(patient_id: str):
+        query = {
+            "patient_id": ObjectId(patient_id)
+        }
+        return await CitaDao.obtener_citas(query)
