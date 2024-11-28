@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 from pydantic import BaseModel
 
 
@@ -6,7 +6,7 @@ class CreateAppointmentDto(BaseModel):
     nutritionist_id: str
     patient_id: str
     nutritionist: str
-    appointmentType: str
+    appointment_type: str
     date: str
     time: str
-    report: Any
+    report: Optional[Any] = None

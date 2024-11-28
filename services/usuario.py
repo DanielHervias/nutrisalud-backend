@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 
 from dao.usuario import UsuarioDao
-from dto.usuario import UsuarioCreateDto, UsuarioDto
+from dto.usuario import UsuarioCreateDto
 
 class UsuarioService:
     async def crear_usuario(usuario_nuevo: UsuarioCreateDto):
