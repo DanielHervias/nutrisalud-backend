@@ -5,7 +5,6 @@ from pydantic import BaseModel
 class CreateAppointmentDto(BaseModel):
     nutritionist_id: str
     patient_id: str
-    nutritionist: str
     appointment_type: str
     date: str
     time: str
